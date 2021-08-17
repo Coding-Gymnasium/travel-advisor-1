@@ -6,7 +6,7 @@ import Rating from '@material-ui/lab/Rating';
 
 import useStyles from './styles';
 
-const Map = ({ coordinates, places, setBounds, setCoordinates }) => {
+const Map = ({ coordinates, places, setBounds, setChildClicked, setCoordinates }) => {
   const classes = useStyles();
   const isDesktop = useMediaQuery('(min-width: 600px)');
  
@@ -20,11 +20,10 @@ const Map = ({ coordinates, places, setBounds, setCoordinates }) => {
         margin={[50, 50, 50, 50]}
         options={''}
         onChange={(e) => {
-          console.log(e);
           setCoordinates({ lat: e.center.lat, lng: e.center.lng });
           setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
         }}
-        onChildClick={''}
+        onChildClick={(child) => setChildClicked(child)}
       >
         {places?.map((place, i) => (
           <div
